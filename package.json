@@ -14,10 +14,12 @@
   "description": "",
   "dependencies": {
     "@zap-socket/server": "^0.1.1",
+    "express": "^5.1.0",
     "typescript": "^5.9.3",
     "ws": "^8.18.3"
   },
   "devDependencies": {
+    "@types/express": "^5.0.5",
     "@types/ws": "^8.18.1"
   }
 }
