@@ -2,7 +2,7 @@ import http from 'node:http'
 import crypto from 'crypto'
 import express from 'express'
 
-
+// 258EAFA5-E914-47DA-95CA-C5AB0DC85B11
 const magicGUID="258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 
 const server=http.createServer((req,res)=>{
@@ -13,7 +13,7 @@ server.on("upgrade", (req,socket, header)=>{
 
     
     const sec_key = req.headers["sec-websocket-key"]!; 
-    const acceptKey=hashed(sec_key)     
+    const acceptKey=hashedSecKey(sec_key)     
 
     const headers=setHeaders(acceptKey)    
     socket.write(headers)
@@ -30,10 +30,9 @@ function setHeaders(acceptKey:string){
     "\r\n";
    
    return headers
-
 }
 
-function hashed(id:string){
+function hashedSecKey(id:string){
     const temp=id+magicGUID
     const hash=crypto.createHash("sha1")
     hash.update(temp)
