@@ -15,12 +15,12 @@ server.on("upgrade", (req,socket, header)=>{
     const sec_key = req.headers["sec-websocket-key"]!; 
     const acceptKey=hashedSecKey(sec_key)     
 
-    const headers=setHeaders(acceptKey)    
+    const headers=setHeadersAcceptKey(acceptKey)    
     socket.write(headers)
 })
 
 
-function setHeaders(acceptKey:string){
+function setHeadersAcceptKey(acceptKey:string){
       
   const headers =
     "HTTP/1.1 101 Switching Protocols\r\n" +
